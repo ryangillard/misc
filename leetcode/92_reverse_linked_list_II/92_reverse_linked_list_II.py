@@ -27,7 +27,7 @@ class Solution(object):
             i += 1
 
         tail = current
-        head_glue_nth_node = previous  # connects head to nth node
+        m_minus_1th_glue_nth_node = previous  # connects m - 1th node to nth node
 
         # Reverse from m to n
         while i < n:
@@ -38,8 +38,8 @@ class Solution(object):
             i += 1
 
         # Fix tail
-        if head_glue_nth_node:
-            head_glue_nth_node.next = previous
+        if m_minus_1th_glue_nth_node:
+            m_minus_1th_glue_nth_node.next = previous
         else:
             head = previous
 
