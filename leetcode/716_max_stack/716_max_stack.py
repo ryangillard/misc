@@ -1,0 +1,59 @@
+class MaxStack(object):
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        if not self.stack:
+            self.stack.append((x, x))
+        else:
+            self.stack.append((x, max(x, self.stack[-1][1])))
+
+        return None
+
+
+    def pop(self):
+        """
+        :rtype: None
+        """
+        if self.stack:
+            self.stack.pop()
+
+        return None
+
+
+    def top(self):
+        """
+        :rtype: int
+        """
+        if not self.stack:
+            return None
+
+        return self.stack[-1][0]
+
+
+    def getMax(self):
+        """
+        :rtype: int
+        """
+        if not self.stack:
+            return None
+
+        return self.stack[-1][1]
+
+
+
+# Your MaxStack object will be instantiated and called as such:
+# obj = MaxStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMax()
