@@ -5,10 +5,13 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
-        wordDict = set(wordDict)
-        return self.bottomUp(s, wordDict)
+        if not s or not wordDict:
+            return False
 
-    def bottomUp(self, s, wordDict):
+        wordDict = set(wordDict)
+        return self.bottomUpM2(s, wordDict)
+
+    def bottomUpM3(self, s, wordDict):
         n = len(s)
         dp = [[False] * n for _ in range(n)]
 
@@ -32,3 +35,11 @@ class Solution(object):
                 j += 1
 
         return dp[0][-1]
+
+    def bottomUpM2(self, s, wordDict):
+        dp = [True] * (len(s) + 1)
+        max_len = max([len(w) for w in wordDict])
+        for i in range(1, len(s) + 1):
+            dp[i] = any(dp[j] and s[j:i] in wordDict for j in range(max(0, i - max_len), i))
+
+        return dp[-1]
