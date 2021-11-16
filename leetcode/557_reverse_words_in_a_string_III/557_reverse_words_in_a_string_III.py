@@ -4,10 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        strs = s.split(" ")
-        strs = [list(st) for st in strs]
-
-        return self.noFancyListStuff(s)
+        return self.subproblem(s)
 
     def noFancyListStuff(self, s):
         s = list(s)
@@ -28,8 +25,26 @@ class Solution(object):
 
         return "".join(s)
 
-    def fancyListStuff(self, strs):
+    def fancyListStuff(self, s):
+        strs = s.split(" ")
+        strs = [list(st) for st in strs]
+
         for i in range(len(strs)):
             strs[i] = "".join(strs[i][::-1])
 
         return " ".join(strs)
+
+    def subproblem(self, s):
+        strs = s.split(" ")
+        strs = [list(st) for st in strs]
+        return " ".join([self.reverseWord(w) for w in strs])
+
+    def reverseWord(self, w):
+        left, right = 0, len(w) - 1
+        while left <= right:
+            temp = w[left]
+            w[left] = w[right]
+            w[right] = temp
+            left += 1
+            right -= 1
+        return "".join(w)

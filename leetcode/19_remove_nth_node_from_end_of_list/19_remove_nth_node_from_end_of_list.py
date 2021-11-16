@@ -26,6 +26,5 @@ class Solution(object):
 
         if i == n - 1:
             return head.next
-        else:
-            slow.next = slow.next.next
-            return head
+        slow.next = slow.next.next
+        return head
